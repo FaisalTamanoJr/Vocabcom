@@ -1,6 +1,6 @@
 # Vocabcom
 
-Vocabcom is scrapes Vocabulary.com for word definitions.
+Vocabcom scrapes Vocabulary.com for word definitions.
 
 ## Dependencies
 
