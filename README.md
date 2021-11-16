@@ -4,7 +4,7 @@ Vocabcom scrapes Vocabulary.com for word definitions.
 
 ## Dependencies
 
-Python
+Python,
 Python-pip
 
 ## Installation
