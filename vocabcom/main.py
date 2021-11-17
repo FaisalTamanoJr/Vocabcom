@@ -2,11 +2,14 @@ from bs4 import BeautifulSoup
 import sys
 import requests
 
+
 def main():
     # The commands in the program
     commands = {
-            "define":"searches for the short definition of that word",
-            "long-define":"searches for the long definition of that word",
+            "define":
+            "searches for the short definition of that word",
+            "long-define":
+            "searches for the long definition of that word",
             }
 
     # Create a list for their keys and their values
@@ -15,7 +18,6 @@ def main():
     for command in commands.items():
         command_keys.append(command[0])
         command_values.append(command[1])
-
 
     # Let the user provide one word
     if len(sys.argv) == 2 or len(sys.argv) == 3:
@@ -27,15 +29,18 @@ def main():
             Definition("long")
 
         else:
-            print("Usage: vocabcom <command> [arguments] \n\nThe commands are:\n")
+            print("Usage: vocabcom <command> [arguments]" +
+                  "\n\nThe commands are:\n")
             for i in range(len(commands)):
                 print("\t" + command_keys[i] + "\t\t" + command_values[i])
 
-    # If the user does not provide a word or provides too much words tell them how to properly use the program
+    # If the user does not provide a word or provides
+    # too much words tell them how to properly use the program
     else:
         print("Usage: vocabcom <command> [arguments] \n\nThe commands are:\n")
         for i in range(len(commands)):
             print("\t" + command_keys[i] + "\t\t" + command_values[i])
+
 
 def Definition(length):
     if len(sys.argv) == 3:
@@ -58,8 +63,12 @@ def Definition(length):
                 for short in short_definition:
                     print(short.text)
 
-        elif length == "long":
-            # Look for the short definition and print it
+            # If the definition cannot be found
+            else:
+                print(f'The {length} definition of the word cannot be found')
+
+        else:
+            # Look for the long definition and print it
             long_definition = soup.find_all("p", class_="long")
 
             # If it exists
@@ -67,12 +76,13 @@ def Definition(length):
                 for long in long_definition:
                     print(long.text)
 
-        # If the word or the short definition cannot be found
-        else:
-            print(f'The {length} definition of the word cannot be found')
+            # If the definition cannot be found
+            else:
+                print(f'The {length} definition of the word cannot be found')
 
     else:
         print("Usage: vobacom define <word>")
+
 
 if __name__ == "__main__":
     exit(main())
